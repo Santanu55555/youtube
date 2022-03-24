@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+   <style>
+       #total-div{
+    height: 900px;
+}
+   </style>
+</head>
+<body>
+    <div id="total-div"></div>
+</body>
+</html>
+
+<script >
+    let show = JSON.parse(localStorage.getItem("s"))
+
+let menu = document.getElementById("total-div");
+function showData(show){
+    // document.getElementById("total-div").innerHTML=null
+
+    show.map(({snippet:{title} ,id:{ videoId}})=> {
+
+        // let div = document.createElement("div");
+        menu.innerHTML= null;
+        let div=document.createElement('div');
+            let name=document.createElement('p');
+            name.innerText=title;
+            let iframe=document.createElement('iframe');
+
+            iframe.height="900px";
+            iframe.width="100%";
+            iframe.allow = "fullscreen"
+
+            iframe.src=`https://www.youtube.com/embed/${show[0].id.videoId}`;
+            div.append(iframe,name);
+            // search_results_div.append(div);
+
+
+        // div.append(image, name, price, btn);
+
+        menu.append(div)
+    })
+    }
+    showData(show)
+</script>
